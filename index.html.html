@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book of Flames – Burn Ledger</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #111; color: #eee; padding: 2rem; }
+    h1 { color: #ffa500; text-align: center; }
+    form, table { width: 100%; max-width: 700px; margin: 2rem auto; }
+    input, textarea, button { width: 100%; padding: 0.75rem; margin: 0.5rem 0; background: #222; border: 1px solid #444; color: #fff; }
+    button { background: #ffa500; border: none; font-weight: bold; cursor: pointer; }
+    table { border-collapse: collapse; }
+    th, td { padding: 0.75rem; border: 1px solid #444; text-align: left; }
+    th { background: #333; }
+    .phoenix { font-size: 2rem; color: orange; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>🔥 Book of Flames – Burn Ledger</h1>
+  <form id="burnForm">
+    <input type="text" id="alias" placeholder="Your Alias or Handle" required>
+    <textarea id="message" placeholder="Your Message or Intention" required></textarea>
+    <input type="number" id="value" placeholder="SOLAR Coins Burned" required>
+    <button type="submit">Submit Burn</button>
+  </form>
+  <table id="ledger">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Alias</th>
+        <th>Message</th>
+        <th>Value Burned</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="phoenix">🕊️ The Phoenix Rises With Every Burn 🕊️</div>
+
+  <script>
+    let count = 0;
+    const form = document.getElementById('burnForm');
+    const ledger = document.querySelector('#ledger tbody');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      count++;
+      const alias = document.getElementById('alias').value;
+      const message = document.getElementById('message').value;
+      const value = document.getElementById('value').value;
+      const timestamp = new Date().toLocaleString();
+
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>#${String(count).padStart(4, '0')}</td>
+        <td>${alias}</td>
+        <td>${message}</td>
+        <td>${value} SOLAR</td>
+        <td>${timestamp}</td>
+      `;
+      ledger.prepend(row);
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
